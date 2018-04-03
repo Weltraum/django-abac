@@ -21,3 +21,4 @@
 1. [Project architecture](project_architecture.md)
 1. [Authentication](authentication.md)
 1. [Rules](rules.md)
+1. [Combining algorithms](algorithm.md)
