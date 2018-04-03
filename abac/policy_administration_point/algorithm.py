@@ -4,6 +4,7 @@ http://docs.oasis-open.org/xacml/3.0/xacml-3.0-core-spec-os-en.html#_Toc32504726
 
 from abac.policy_administration_point.const import PERMIT, DENY, INDETERMINATE, NOT_APPLICABLE
 
+
 def deny_overrides(decisions):
     one_permit = False
     one_indeterminate = False

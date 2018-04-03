@@ -40,7 +40,7 @@ COUNT_COLUMN = len(DECISIONS)
 
 str_row = '{:^{length}} |'*(COUNT_COLUMN+1)
 str_color_row = '{:^{length}} |' + '{:^{color_length}} |'*COUNT_COLUMN
-str_line = '-'*(COUNT_COLUMN + 1)*(LENGTH + 2)
+str_line = ('-'*(LENGTH + 1) + '|')*(COUNT_COLUMN + 1)
 
 
 def print_decision_combination(alg):
@@ -59,6 +59,6 @@ def print_decision_combination(alg):
             length=LENGTH,
             color_length=COLOR_LENGTH
         ))
-        print(str_row.format(*['']*5, length=LENGTH))
+        # print(str_row.format(*['']*5, length=LENGTH))
     print()
 
