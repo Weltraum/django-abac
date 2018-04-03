@@ -6,6 +6,7 @@
 Из него на данный момент реализовано 4:
 
 ### PERMIT_UNLESS_DENY
+
 |                      |       <span style="color:green">permit</span>         |        deny          |   not_applicable     |    indeterminate     |
 |----------------------|----------------------|----------------------|----------------------|----------------------|
 |     **permit**       |       permit         |        deny          |       permit         |       permit         |
