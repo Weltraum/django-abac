@@ -1,13 +1,12 @@
 from abac.policy_administration_point.const import DENY, PERMIT, NOT_APPLICABLE, INDETERMINATE
 
 DECISIONS = [PERMIT, DENY, NOT_APPLICABLE, INDETERMINATE]
-
-BOLD = '\x1b[1m'
-NORMAL = '\x1b[0m'
-RED = '\x1b[31m'
-GREEN = '\x1b[32m'
-BLUE = '\x1b[34m'
-WHITE = '\x1b[30m'
+BOLD = '**'
+NORMAL = '</span>'
+RED = '<span style="color:red">'
+GREEN = '<span style="color:green">'
+BLUE = '<span style="color:blue">'
+WHITE = '<span>'
 
 str_color = '{color}{decision}{normal}'
 
@@ -44,12 +43,8 @@ str_line = '|' + ('-'*(LENGTH + 1) + '|')*(COUNT_COLUMN + 1)
 
 
 def print_decision_combination(alg):
-    print('### ' + str_color.format(
-        color=BOLD,
-        decision=alg.__name__.upper(),
-        normal=NORMAL
-    ))
-    # print(str_line)
+    print('### ' + alg.__name__.upper())
+    print()
     print(str_row.format('', *DECISIONS, length=LENGTH))
     print(str_line)
     for decision in DECISIONS:

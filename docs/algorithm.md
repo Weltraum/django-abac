@@ -7,38 +7,41 @@
 
 ### PERMIT_UNLESS_DENY
 
-|                      |       <span style="color:green">permit</span>         |        deny          |   not_applicable     |    indeterminate     |
+|                      |       permit         |        deny          |   not_applicable     |    indeterminate     |
 |----------------------|----------------------|----------------------|----------------------|----------------------|
-|     **permit**       |       permit         |        deny          |       permit         |       permit         |
-|      **deny**        |        deny          |        deny          |        deny          |        deny          |
-| **not_applicable**   |       permit         |        deny          |       permit         |       permit         |
-|  **indeterminate**   |       permit         |        deny          |       permit         |       permit         |
+|     **permit**       |<span style="color:green">permit</span> |<span style="color:red">deny</span> |<span style="color:green">permit</span> |<span style="color:green">permit</span> |
+|      **deny**        |<span style="color:red">deny</span> |<span style="color:red">deny</span> |<span style="color:red">deny</span> |<span style="color:red">deny</span> |
+| **not_applicable**   |<span style="color:green">permit</span> |<span style="color:red">deny</span> |<span style="color:green">permit</span> |<span style="color:green">permit</span> |
+|  **indeterminate**   |<span style="color:green">permit</span> |<span style="color:red">deny</span> |<span style="color:green">permit</span> |<span style="color:green">permit</span> |
 
 ### DENY_UNLESS_PERMIT
+
 |                      |       permit         |        deny          |   not_applicable     |    indeterminate     |
 |----------------------|----------------------|----------------------|----------------------|----------------------|
-|     **permit**       |       permit         |       permit         |       permit         |       permit         |
-|      **deny**        |       permit         |        deny          |        deny          |        deny          |
-| **not_applicable**   |       permit         |        deny          |        deny          |        deny          |
-|  **indeterminate**   |       permit         |        deny          |        deny          |        deny          |
+|     **permit**       |<span style="color:green">permit</span> |<span style="color:green">permit</span> |<span style="color:green">permit</span> |<span style="color:green">permit</span> |
+|      **deny**        |<span style="color:green">permit</span> |<span style="color:red">deny</span> |<span style="color:red">deny</span> |<span style="color:red">deny</span> |
+| **not_applicable**   |<span style="color:green">permit</span> |<span style="color:red">deny</span> |<span style="color:red">deny</span> |<span style="color:red">deny</span> |
+|  **indeterminate**   |<span style="color:green">permit</span> |<span style="color:red">deny</span> |<span style="color:red">deny</span> |<span style="color:red">deny</span> |
 
 ### PERMIT_OVERRIDES
+
 |                      |       permit         |        deny          |   not_applicable     |    indeterminate     |
 |----------------------|----------------------|----------------------|----------------------|----------------------|
-|     **permit**       |       permit         |       permit         |       permit         |       permit         |
-|      **deny**        |       permit         |        deny          |        deny          |    indeterminate     |
-| **not_applicable**   |       permit         |        deny          |   not_applicable     |    indeterminate     |
-|  **indeterminate**   |       permit         |    indeterminate     |    indeterminate     |    indeterminate     |
+|     **permit**       |<span style="color:green">permit</span> |<span style="color:green">permit</span> |<span style="color:green">permit</span> |<span style="color:green">permit</span> |
+|      **deny**        |<span style="color:green">permit</span> |<span style="color:red">deny</span> |<span style="color:red">deny</span> |<span style="color:blue">indeterminate</span> |
+| **not_applicable**   |<span style="color:green">permit</span> |<span style="color:red">deny</span> | <span>not_applicable</span>   |<span style="color:blue">indeterminate</span> |
+|  **indeterminate**   |<span style="color:green">permit</span> |<span style="color:blue">indeterminate</span> |<span style="color:blue">indeterminate</span> |<span style="color:blue">indeterminate</span> |
 
 ### DENY_OVERRIDES
+
 |                      |       permit         |        deny          |   not_applicable     |    indeterminate     |
 |----------------------|----------------------|----------------------|----------------------|----------------------|
-|     **permit**       |       permit         |        deny          |       permit         |    indeterminate     |
-|      **deny**        |        deny          |        deny          |        deny          |        deny          |
-| **not_applicable**   |       permit         |        deny          |   not_applicable     |    indeterminate     |
-|  **indeterminate**   |    indeterminate     |        deny          |    indeterminate     |    indeterminate     |
+|     **permit**       |<span style="color:green">permit</span> |<span style="color:red">deny</span> |<span style="color:green">permit</span> |<span style="color:blue">indeterminate</span> |
+|      **deny**        |<span style="color:red">deny</span> |<span style="color:red">deny</span> |<span style="color:red">deny</span> |<span style="color:red">deny</span> |
+| **not_applicable**   |<span style="color:green">permit</span> |<span style="color:red">deny</span> | <span>not_applicable</span>   |<span style="color:blue">indeterminate</span> |
+|  **indeterminate**   |<span style="color:blue">indeterminate</span> |<span style="color:red">deny</span> |<span style="color:blue">indeterminate</span> |<span style="color:blue">indeterminate</span> |
 
-Some Markdown text with <span style="color:blue">some *blue* text</span>
+
 
 ## Оглавление
 1. [Quick start](index.md)
