@@ -52,3 +52,9 @@ class MyAuthenticationClass:
         else:
             raise AbacAuthenticationFailed(msg)
 ```
+
+## Оглавление
+1. [Quick start](index.md)
+1. [Project architecture](project_architecture.md)
+1. Authentication
+1. [Rules](rules.md)

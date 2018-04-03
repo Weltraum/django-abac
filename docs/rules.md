@@ -32,3 +32,9 @@ try:
 except:
     return INDETERMINATE
 ```
+
+## Оглавление
+1. [Quick start](index.md)
+1. [Project architecture](project_architecture.md)
+1. [Authentication](authentication.md)
+1. Rules
