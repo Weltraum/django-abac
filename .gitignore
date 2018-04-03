@@ -1,0 +1,26 @@
+# PyCharm
+.idea
+
+# Byte-compiled / optimized / DLL files
+__pycache__/git
+*.py[cod]
+*$py.class
+
+# Unit test / coverage reports
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+
+# pyenv
+.python-version
