@@ -5,20 +5,39 @@
 
 Из него на данный момент реализовано 4:
 
-### deny_overrides
+### PERMIT_UNLESS_DENY
+|                      |       <span style="color:green">permit</span>         |        deny          |   not_applicable     |    indeterminate     |
+|----------------------|----------------------|----------------------|----------------------|----------------------|
+|     **permit**       |       permit         |        deny          |       permit         |       permit         |
+|      **deny**        |        deny          |        deny          |        deny          |        deny          |
+| **not_applicable**   |       permit         |        deny          |       permit         |       permit         |
+|  **indeterminate**   |       permit         |        deny          |       permit         |       permit         |
 
-### permit_overrides
+### DENY_UNLESS_PERMIT
+|                      |       permit         |        deny          |   not_applicable     |    indeterminate     |
+|----------------------|----------------------|----------------------|----------------------|----------------------|
+|     **permit**       |       permit         |       permit         |       permit         |       permit         |
+|      **deny**        |       permit         |        deny          |        deny          |        deny          |
+| **not_applicable**   |       permit         |        deny          |        deny          |        deny          |
+|  **indeterminate**   |       permit         |        deny          |        deny          |        deny          |
 
-### deny_unless_permit
+### PERMIT_OVERRIDES
+|                      |       permit         |        deny          |   not_applicable     |    indeterminate     |
+|----------------------|----------------------|----------------------|----------------------|----------------------|
+|     **permit**       |       permit         |       permit         |       permit         |       permit         |
+|      **deny**        |       permit         |        deny          |        deny          |    indeterminate     |
+| **not_applicable**   |       permit         |        deny          |   not_applicable     |    indeterminate     |
+|  **indeterminate**   |       permit         |    indeterminate     |    indeterminate     |    indeterminate     |
 
-### permit_unless_deny
+### DENY_OVERRIDES
+|                      |       permit         |        deny          |   not_applicable     |    indeterminate     |
+|----------------------|----------------------|----------------------|----------------------|----------------------|
+|     **permit**       |       permit         |        deny          |       permit         |    indeterminate     |
+|      **deny**        |        deny          |        deny          |        deny          |        deny          |
+| **not_applicable**   |       permit         |        deny          |   not_applicable     |    indeterminate     |
+|  **indeterminate**   |    indeterminate     |        deny          |    indeterminate     |    indeterminate     |
 
-                      |       permit         |        deny          |   not_applicable     |    indeterminate     |
-----------------------|----------------------|----------------------|----------------------|----------------------|
-       permit         |       permit         |        deny          |       permit         |       permit         |
-        deny          |        deny          |        deny          |        deny          |        deny          |
-   not_applicable     |       permit         |        deny          |       permit         |       permit         |
-    indeterminate     |       permit         |        deny          |       permit         |       permit         |
+Some Markdown text with <span style="color:blue">some *blue* text</span>
 
 ## Оглавление
 1. [Quick start](index.md)
