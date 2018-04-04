@@ -1,8 +1,5 @@
-from django.db.models import Q
-
-
 class AbstractPolicy:
-    """ Abstract class describing the basic behavior of the entity "policy" """
+    """ Class describing the basic behavior of the entity "policy" """
 
     def __init__(self, action=None, resource=None, subject=None):
         self.action = action
@@ -37,3 +34,8 @@ class AbstractPolicy:
 
     def description(self):
         pass
+
+
+my_policy = Policy(
+    target=user_group_is_condition()
+)
