@@ -4,13 +4,13 @@ from abac.const import NOT_APPLICABLE, INDETERMINATE
 from abac.policy_administration_point import AbstractCondition
 
 
-class Policy:
+class PolicySet:
     """ Class describing the basic behavior of the entity "rule" """
 
-    def __init__(self, target, rules, algorithm,
+    def __init__(self, target, policies, algorithm,
                  obligation=None, advice=None, description=None):
         self.target = target
-        self.rules = rules
+        self.policies = policies
         self.algorithm = algorithm
         self.obligation = obligation
         self.advice = advice
@@ -26,7 +26,7 @@ class Policy:
         try:
             if target is True:
                 return self.algorithm(
-                    [rule.decision() for rule in self.rules]
+                    [policy.decision() for policy in self.policies]
                 )
             return NOT_APPLICABLE
         except Exception as e:
@@ -36,7 +36,7 @@ class Policy:
     def validate_initialization(self):
         if not isinstance(self.target, (AbstractCondition, bool)):
             raise TypeError('The target is not AbstractCondition or bool')
-        if not isinstance(self.rules, collections.Iterable):
+        if not isinstance(self.policies, collections.Iterable):
             raise TypeError('The policies is not iterable')
         if not callable(self.algorithm):
             raise TypeError('The algorithm is not callable')

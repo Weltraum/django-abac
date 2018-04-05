@@ -2,7 +2,7 @@
 http://docs.oasis-open.org/xacml/3.0/xacml-3.0-core-spec-os-en.html#_Toc325047268
 """
 
-from abac.policy_administration_point.const import (
+from abac.const import (
     PERMIT, DENY, INDETERMINATE, NOT_APPLICABLE
 )
 

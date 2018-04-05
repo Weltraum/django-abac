@@ -2,7 +2,7 @@
 Print decision algorithm combination for documentation
 """
 
-from abac.policy_administration_point.const import DENY, PERMIT, NOT_APPLICABLE, INDETERMINATE
+from abac.const import DENY, PERMIT, NOT_APPLICABLE, INDETERMINATE
 
 DECISIONS = [PERMIT, DENY, NOT_APPLICABLE, INDETERMINATE]
 BOLD = '**'

@@ -1,7 +1,7 @@
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.core.cache import cache
 
-from abac.settings import settings
+from abac.settings import abac_settings
 
 
 class AbstractCondition:
@@ -22,7 +22,7 @@ class UserGroupIsCondition(AbstractCondition):
         condition = cache.get_or_set(
             'abac.user_group_is.{}.{}'.format(self.user.id, self.group_name),
             self.user.groups.filter(name=self.group_name).exists(),
-            settings.CACHE_RULE_TIMEOUT
+            abac_settings.CACHE_RULE_TIMEOUT
         )
         return bool(condition)
 
@@ -30,7 +30,7 @@ class UserGroupIsCondition(AbstractCondition):
         if not isinstance(self.user, AbstractBaseUser):
             raise TypeError('The user must be an instance of django.contrib.auth.models.AbstractBaseUser cls.')
         if not isinstance(self.group_name, str):
-            raise TypeError('The group_name must be a str')
+            raise TypeError('The my_group must be a str')
 
 
 class EqualCondition(AbstractCondition):
