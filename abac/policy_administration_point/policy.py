@@ -34,8 +34,3 @@ class AbstractPolicy:
 
     def description(self):
         pass
-
-
-my_policy = Policy(
-    target=user_group_is_condition()
-)

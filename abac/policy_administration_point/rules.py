@@ -6,8 +6,10 @@ from abac.policy_administration_point.const import (
 class Rule:
     """ Class describing the basic behavior of the entity "rule" """
 
-    def __init__(self, target, condition, validate_condition, effect=PERMIT,
-                 obligation=None, advice=None, description=None, **kwargs):
+    def __init__(self, target, condition, effect=PERMIT,
+                 obligation=None, advice=None, description=None,
+                 # **kwargs
+                 ):
         self.target = target
         self.condition = condition
         self.effect = effect
@@ -17,9 +19,8 @@ class Rule:
         self.error = None
         self.validate_initialization()
         # Specific field for condition
-        for (field, value) in kwargs.items():
-            setattr(self, field, value)
-        validate_condition()
+        # for (field, value) in kwargs.items():
+        #     setattr(self, field, value)
 
     def decision(self):
         try:

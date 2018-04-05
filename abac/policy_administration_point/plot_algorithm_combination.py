@@ -1,3 +1,7 @@
+"""
+Print decision algorithm combination for documentation
+"""
+
 from abac.policy_administration_point.const import DENY, PERMIT, NOT_APPLICABLE, INDETERMINATE
 
 DECISIONS = [PERMIT, DENY, NOT_APPLICABLE, INDETERMINATE]
@@ -54,6 +58,5 @@ def print_decision_combination(alg):
             length=LENGTH,
             color_length=COLOR_LENGTH
         ))
-        # print(str_row.format(*['']*5, length=LENGTH))
     print()
 
