@@ -22,3 +22,18 @@ class Solver:
         for policy in self.policies:
             if not isinstance(policy, (Policy, PolicySet)):
                 raise TypeError('The policy is not Policy or PolicySet')
+
+    def decision(self):
+        if isinstance(self.target, bool):
+            target = self.target
+        else:
+            target = self.target.decision()
+        try:
+            if target is True:
+                return self.algorithm(
+                    [rule.decision() for rule in self.rules]
+                )
+            return NOT_APPLICABLE
+        except Exception as e:
+            self.error = e
+            return INDETERMINATE

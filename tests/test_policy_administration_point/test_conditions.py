@@ -4,12 +4,12 @@ from django.contrib.auth.models import User, Group
 from django.test import TestCase
 
 from abac.policy_administration_point import (
-    EqualCondition, UserGroupIsCondition
+    EqualExpressions, UserGroupIsExpressions
 )
 
 
 class ConditionTests(TestCase):
-    """ Test the PAP condition """
+    """ Test the PAP decision """
 
     def setUp(self):
         self.user = User.objects.create_user(
@@ -24,32 +24,32 @@ class ConditionTests(TestCase):
         Group.objects.create(name=self.bad_group_name)
 
     def test_equal_condition_true(self):
-        condition = EqualCondition('test', 'test')
-        self.assertEqual(condition.condition(), True)
+        condition = EqualExpressions('test', 'test')
+        self.assertEqual(condition.decision(), True)
 
     def test_equal_condition_false(self):
-        condition = EqualCondition('first', 'second')
-        self.assertEqual(condition.condition(), False)
+        condition = EqualExpressions('first', 'second')
+        self.assertEqual(condition.decision(), False)
 
     def test_equal_condition_exception(self):
         with pytest.raises(TypeError):
-            EqualCondition('test', 123)
+            EqualExpressions('test', 123)
 
     def test_user_is_group_condition_true(self):
-        condition = UserGroupIsCondition(
+        condition = UserGroupIsExpressions(
             self.user, self.correct_group_name
         )
-        self.assertEqual(condition.condition(), True)
+        self.assertEqual(condition.decision(), True)
 
     def test_user_is_group_condition_false(self):
-        condition = UserGroupIsCondition(
+        condition = UserGroupIsExpressions(
             self.user, self.bad_group_name
         )
-        self.assertEqual(condition.condition(), False)
+        self.assertEqual(condition.decision(), False)
 
     def test_user_is_group_condition_exception(self):
         with pytest.raises(TypeError):
-            UserGroupIsCondition(
+            UserGroupIsExpressions(
                 self.user, self.correct_group
             )
 

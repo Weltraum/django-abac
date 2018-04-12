@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User, Group
 from django.test import TestCase
 
-from abac.policy_administration_point import Rule, UserGroupIsCondition
+from abac.policy_administration_point import Rule, UserGroupIsExpressions
 from abac.const import PERMIT, DENY, NOT_APPLICABLE
 
 
@@ -19,7 +19,7 @@ class RulesTests(TestCase):
     def test_create_rule_permit(self):
         user_is_my_group_rule = Rule(
             target=True,
-            condition=UserGroupIsCondition(self.user, self.my_group_name),
+            condition=UserGroupIsExpressions(self.user, self.my_group_name),
             effect=PERMIT,
         )
         self.assertEqual(
@@ -31,7 +31,7 @@ class RulesTests(TestCase):
     def test_create_rule_deny(self):
         user_is_my_group_rule = Rule(
             target=True,
-            condition=UserGroupIsCondition(self.user, self.my_group_name),
+            condition=UserGroupIsExpressions(self.user, self.my_group_name),
             effect=DENY,
         )
         self.assertEqual(
@@ -43,7 +43,7 @@ class RulesTests(TestCase):
     def test_create_rule_not_applicable(self):
         user_is_my_group_rule = Rule(
             target=False,
-            condition=UserGroupIsCondition(self.user, self.my_group_name),
+            condition=UserGroupIsExpressions(self.user, self.my_group_name),
         )
         self.assertEqual(
             user_is_my_group_rule.decision(),

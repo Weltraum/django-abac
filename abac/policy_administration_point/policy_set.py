@@ -1,7 +1,7 @@
 import collections
 
 from abac.const import NOT_APPLICABLE, INDETERMINATE
-from abac.policy_administration_point import AbstractCondition
+from abac.policy_administration_point import AbstractExpressions
 
 
 class PolicySet:
@@ -19,12 +19,8 @@ class PolicySet:
         self.validate_initialization()
 
     def decision(self):
-        if isinstance(self.target, bool):
-            target = self.target
-        else:
-            target = self.target.condition()
         try:
-            if target is True:
+            if self.target is None or self.target.decision() is True:
                 return self.algorithm(
                     [policy.decision() for policy in self.policies]
                 )
@@ -34,8 +30,8 @@ class PolicySet:
             return INDETERMINATE
 
     def validate_initialization(self):
-        if not isinstance(self.target, (AbstractCondition, bool)):
-            raise TypeError('The target is not AbstractCondition or bool')
+        if self.target and not isinstance(self.target, AbstractExpressions):
+            raise TypeError('The target is not AbstractExpressions or bool')
         if not isinstance(self.policies, collections.Iterable):
             raise TypeError('The policies is not iterable')
         if not callable(self.algorithm):

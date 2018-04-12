@@ -1,0 +1,13 @@
+{
+    "target": {
+        "expression": "EqualCondition",
+        "first": "$object",
+        "second": "expert_review"
+    },
+    "condition": {
+        "expression": "UserGroupIsCondition",
+        "user": "$user",
+        "group_name": "expert"
+    },
+    "effect": "permit"
+}

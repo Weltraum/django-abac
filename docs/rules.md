@@ -4,7 +4,7 @@
 
 - цель (target);
 - эффект (effect);
-- условие (condition);
+- условие (decision);
 - обязательства (obligation);
 - рекомендации (advice).
 

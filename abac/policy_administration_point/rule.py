@@ -1,7 +1,7 @@
 from abac.const import (
     NOT_APPLICABLE, INDETERMINATE, PERMIT, DENY
 )
-from .conditions import AbstractCondition
+from .expressions import AbstractExpressions
 
 
 class Rule:
@@ -19,13 +19,9 @@ class Rule:
         self.validate_initialization()
 
     def decision(self):
-        if isinstance(self.target, bool):
-            target = self.target
-        else:
-            target = self.target.condition()
         try:
-            if target is True:
-                if self.condition.condition() is True:
+            if self.target is None or self.target.decision() is True:
+                if self.condition.decision() is True:
                     return self.effect
             return NOT_APPLICABLE
         except Exception as e:
@@ -33,10 +29,10 @@ class Rule:
             return INDETERMINATE
 
     def validate_initialization(self):
-        if not isinstance(self.target, (AbstractCondition, bool)):
-            raise TypeError('The target is not AbstractCondition or bool')
-        if not isinstance(self.condition, AbstractCondition):
-            raise TypeError('The condition is not AbstractCondition')
+        if self.target and not isinstance(self.target, AbstractExpressions):
+            raise TypeError('The target is not AbstractExpressions or bool')
+        if not isinstance(self.condition, AbstractExpressions):
+            raise TypeError('The decision is not AbstractExpressions')
         if self.effect not in [PERMIT, DENY]:
             raise TypeError('The effect is not PERMIT or DENY')
         if self.obligation is not None and not callable(self.obligation):

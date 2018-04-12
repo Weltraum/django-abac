@@ -2,7 +2,7 @@ from django.contrib.auth.models import User, Group
 from django.test import TestCase
 
 from abac.policy_administration_point import (
-    Policy, Rule, UserGroupIsCondition, EqualCondition
+    Policy, Rule, UserGroupIsExpressions, EqualExpressions
 )
 from abac.algorithm import permit_overrides
 from abac.const import PERMIT
@@ -20,13 +20,13 @@ class PolicyTests(TestCase):
         self.user.groups.add(self.my_group)
         self.user_is_my_group_rule = Rule(
             target=True,
-            condition=UserGroupIsCondition(self.user, self.my_group_name),
+            condition=UserGroupIsExpressions(self.user, self.my_group_name),
             effect=PERMIT,
         )
 
     def test_create_policy(self):
         policy = Policy(
-            target=EqualCondition('test', 'test'),
+            target=EqualExpressions('test', 'test'),
             rules=[self.user_is_my_group_rule],
             algorithm=permit_overrides
         )

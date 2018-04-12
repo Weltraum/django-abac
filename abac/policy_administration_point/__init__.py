@@ -1,7 +1,7 @@
-from .conditions import (
-    AbstractCondition,
-    EqualCondition,
-    UserGroupIsCondition
+from .expressions import (
+    AbstractExpressions,
+    EqualExpressions,
+    UserGroupIsExpressions
 )
 from .rule import Rule
 from .policy import Policy
