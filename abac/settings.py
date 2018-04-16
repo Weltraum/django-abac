@@ -14,13 +14,15 @@ from django.utils import six
 DEFAULTS = {
     'DEFAULT_AUTHENTICATION': True,
     'ADDITIONAL_AUTHENTICATION_CLASS': (),
+    'EXPRESSIONS': (),
     'CACHE_RULE_TIMEOUT': 3,
 }
 
 
 # List of settings that may be in string import notation.
 IMPORT_STRINGS = (
-    'ADDITIONAL_AUTHENTICATION_CLASS'
+    'ADDITIONAL_AUTHENTICATION_CLASS',
+    'EXPRESSIONS',
 )
 
 
