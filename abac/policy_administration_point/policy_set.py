@@ -1,15 +1,15 @@
 import collections
 
 from abac.const import NOT_APPLICABLE, INDETERMINATE
-from abac.policy_administration_point import AbstractExpressions
 
 
 class PolicySet:
     """ Class describing the basic behavior of the entity "rule" """
 
-    def __init__(self, target, policies, algorithm,
+    def __init__(self, policies, algorithm, target=None, target_param=None,
                  obligation=None, advice=None, description=None):
         self.target = target
+        self.target_param = target_param
         self.policies = policies
         self.algorithm = algorithm
         self.obligation = obligation
@@ -20,7 +20,7 @@ class PolicySet:
 
     def decision(self):
         try:
-            if self.target is None or self.target.decision() is True:
+            if self.target is None or self.target(**self.target_param) is True:
                 return self.algorithm(
                     [policy.decision() for policy in self.policies]
                 )
@@ -30,8 +30,6 @@ class PolicySet:
             return INDETERMINATE
 
     def validate_initialization(self):
-        if self.target and not isinstance(self.target, AbstractExpressions):
-            raise TypeError('The target is not AbstractExpressions or bool')
         if not isinstance(self.policies, collections.Iterable):
             raise TypeError('The policies is not iterable')
         if not callable(self.algorithm):

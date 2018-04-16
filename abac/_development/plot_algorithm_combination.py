@@ -3,6 +3,12 @@ Print decision algorithm combination for documentation
 """
 
 from abac.const import DENY, PERMIT, NOT_APPLICABLE, INDETERMINATE
+from abac.algorithm import (
+    permit_unless_deny,
+    deny_unless_permit,
+    permit_overrides,
+    deny_overrides
+)
 
 DECISIONS = [PERMIT, DENY, NOT_APPLICABLE, INDETERMINATE]
 BOLD = '**'
@@ -59,4 +65,15 @@ def print_decision_combination(alg):
             color_length=COLOR_LENGTH
         ))
     print()
+
+
+ALGS = [
+    permit_unless_deny,
+    deny_unless_permit,
+    permit_overrides,
+    deny_overrides
+]
+
+for alg in ALGS:
+    print_decision_combination(alg)
 

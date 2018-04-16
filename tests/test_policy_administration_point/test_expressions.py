@@ -3,8 +3,8 @@ import pytest
 from django.contrib.auth.models import User, Group
 from django.test import TestCase
 
-from abac.policy_administration_point import (
-    EqualExpressions, UserGroupIsExpressions
+from abac.policy_administration_point.expressions import (
+    equal, user_group_is
 )
 
 
@@ -24,32 +24,22 @@ class ConditionTests(TestCase):
         Group.objects.create(name=self.bad_group_name)
 
     def test_equal_condition_true(self):
-        condition = EqualExpressions('test', 'test')
-        self.assertEqual(condition.decision(), True)
+        condition = equal('test', 'test')
+        self.assertEqual(condition, True)
 
     def test_equal_condition_false(self):
-        condition = EqualExpressions('first', 'second')
-        self.assertEqual(condition.decision(), False)
-
-    def test_equal_condition_exception(self):
-        with pytest.raises(TypeError):
-            EqualExpressions('test', 123)
+        condition = equal('first', 'second')
+        self.assertEqual(condition, False)
 
     def test_user_is_group_condition_true(self):
-        condition = UserGroupIsExpressions(
+        condition = user_group_is(
             self.user, self.correct_group_name
         )
-        self.assertEqual(condition.decision(), True)
+        self.assertEqual(condition, True)
 
     def test_user_is_group_condition_false(self):
-        condition = UserGroupIsExpressions(
+        condition = user_group_is(
             self.user, self.bad_group_name
         )
-        self.assertEqual(condition.decision(), False)
-
-    def test_user_is_group_condition_exception(self):
-        with pytest.raises(TypeError):
-            UserGroupIsExpressions(
-                self.user, self.correct_group
-            )
+        self.assertEqual(condition, False)
 

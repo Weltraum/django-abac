@@ -1,16 +1,18 @@
 from abac.const import (
     NOT_APPLICABLE, INDETERMINATE, PERMIT, DENY
 )
-from .expressions import AbstractExpressions
 
 
 class Rule:
     """ Class describing the basic behavior of the entity "rule" """
 
-    def __init__(self, target, condition, effect=PERMIT,
-                 obligation=None, advice=None, description=None):
-        self.target = target
+    def __init__(self, condition, target=None, effect=PERMIT,
+                 obligation=None, advice=None, description=None,
+                 target_param=None, condition_param=None):
         self.condition = condition
+        self.condition_param = condition_param
+        self.target = target
+        self.target_param = target_param
         self.effect = effect
         self.obligation = obligation
         self.advice = advice
@@ -20,8 +22,8 @@ class Rule:
 
     def decision(self):
         try:
-            if self.target is None or self.target.decision() is True:
-                if self.condition.decision() is True:
+            if self.target is None or self.target(**self.target_param) is True:
+                if self.condition(**self.condition_param) is True:
                     return self.effect
             return NOT_APPLICABLE
         except Exception as e:
@@ -29,10 +31,6 @@ class Rule:
             return INDETERMINATE
 
     def validate_initialization(self):
-        if self.target and not isinstance(self.target, AbstractExpressions):
-            raise TypeError('The target is not AbstractExpressions or bool')
-        if not isinstance(self.condition, AbstractExpressions):
-            raise TypeError('The decision is not AbstractExpressions')
         if self.effect not in [PERMIT, DENY]:
             raise TypeError('The effect is not PERMIT or DENY')
         if self.obligation is not None and not callable(self.obligation):
