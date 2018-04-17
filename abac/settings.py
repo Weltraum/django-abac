@@ -1,8 +1,7 @@
 """
 ABAC settings similar to REST framework.
 """
-
-from __future__ import unicode_literals
+import json
 
 from importlib import import_module
 
@@ -16,13 +15,13 @@ DEFAULTS = {
     'ADDITIONAL_AUTHENTICATION_CLASS': (),
     'EXPRESSIONS': (),
     'CACHE_RULE_TIMEOUT': 3,
+    'PARSER': {'.json': json.loads},
 }
 
 
 # List of settings that may be in string import notation.
 IMPORT_STRINGS = (
     'ADDITIONAL_AUTHENTICATION_CLASS',
-    'EXPRESSIONS',
 )
 
 

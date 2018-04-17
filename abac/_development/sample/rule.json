@@ -1,13 +1,20 @@
 {
-    "target": {
-        "expression": "EqualCondition",
-        "first": "$object",
-        "second": "expert_review"
-    },
-    "condition": {
-        "expression": "UserGroupIsCondition",
-        "user": "$user",
-        "group_name": "expert"
-    },
-    "effect": "permit"
+    "rule": {
+        "name": "test_rule",
+        "target": {
+            "expression": "equal",
+            "parameters": {
+                "first": "$object",
+                "second": "expert_review"
+            }
+        },
+        "condition": {
+            "expression": "user_group_is",
+            "parameters": {
+                "user": "$user",
+                "group_name": "expert"
+            }
+        },
+        "effect": "permit"
+    }
 }

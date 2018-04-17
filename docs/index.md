@@ -18,6 +18,7 @@
 
 ## Оглавление
 1. Quick start
+1. [Settings](settings.md)
 1. [Project architecture](project_architecture.md)
 1. [Authentication](authentication.md)
 1. [Rules](rules.md)
